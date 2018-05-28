@@ -65,6 +65,11 @@ architecture. Given a 32-bit pointer `p`, it is required that
 
 For x86-64 that means that pointers are zero-extended.
 
+### Target dependent limitations
+
+Any declaration of a variable of a pointer type that is not supported by the
+compilation target architecture is a compile-time error.
+
 ### Examples
 ```
 __ptr32 int p;      // p is a 32-bit pointer to int
