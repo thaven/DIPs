@@ -32,14 +32,24 @@ or any other supplementary materials.
 
 ## Rationale
 
-Some architectures, notably x86-64, allow mixed use of pointer sizes. Currently D
-does not have any way to specify pointer size, but instead it is fixed at the
-default pointer size of the compilation target system.
+On 64-bit architectures it is still possible to use 32-bit pointers if the OS is
+capable of providing a suitable memory layout. Usage of 32-bit pointers may
+reduce memory usage significantly, depending on the workload. Some applications
+may benefit from using mostly 32-bit pointers, but still use 64-bit pointers
+to address data caches placed high in memory.
+
+Currently D does not have any way to specify pointer size, but instead it is
+fixed at the default pointer size of the compilation target system. The intent
+of this DIP is to provide D programmers with opt-in control over pointer size.
 
 ## Description
 
 D grammar is modified as follows: Two additional alternatives are added to the
 _`TypeCtor`_ production: __`__ptr32`__ and __`__ptr64`__.
+
+A version identifier `D_MixedPointers` is added to indicate whether the compiler
+is able to generate code using non-native pointer size for the compilation
+target.
 
 ### Formal definition of semantics
 
