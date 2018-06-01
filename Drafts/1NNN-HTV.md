@@ -70,10 +70,8 @@ a cast and is disallowed in `@safe` code.
 
 Whether pointers are zero-extended or sign-extended when converting from
 32-bit to 64-bit, depends on what is natural to the compilation target
-architecture. Given a 32-bit pointer `p`, it is required that
-`(cast(__ptr64) p) is p`.
-
-For x86-64 that means that pointers are zero-extended.
+architecture. Given a 32-bit pointer `p`, it is required that `*p` and
+`*(cast(__ptr64) p)` will read from the same position in memory.
 
 ### Target dependent limitations
 
